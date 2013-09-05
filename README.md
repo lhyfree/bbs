@@ -5,7 +5,7 @@ django BBS
 依赖的python模块有：
 
  	linaro_django_pagination 	实现分页功能
-	mongoengine pymongo	      MongoDB驱动
+	mongoengine pymongo	        MongoDB驱动
 	
 	
 功能包括：
