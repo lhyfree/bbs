@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}index{% endblock %}
+{% block head %}
+{% endblock %}
+{% load pagination_tags %}
+{% block content %}
+<div class="span8 ">
+
+{% if posts %}
+    {% autopaginate posts 5 %}
+    {% for post in posts %}
+        <table class="table table-bordered table-hover table-condensed" >
+          <tr>
+            <td>
+                <div class="span8 " >
+                    <legend><h4 style="color: #5CA9E2;" ><a href="/{{ post.id }}/">{{ post.title }}</a></h4></legend>
+                </div>
+                <div class="span8 ">
+                    {{ post.content|safe|truncatewords_html:"10"}}
+                </div>
+                <div  class="span8 ">
+                    <h6><em><p style="color: #5CA9E2;"><a href="/{{ post.id }}/"><U> 阅读全文 →</U></a></p></em></h6>
+                </div>
+                <div  class="span8 ">
+                    <div align="right"><h6><small><em>{{ post.author }}&nbsp on &nbsp{{ post.date }}</em></small></h6></div>
+                </div>
+            </td>
+          </tr>
+        </table>
+
+    {% endfor %}
+    <div align="right">
+        {% paginate %}
+    </div>
+{% else %}
+    <h3>写一篇日志吧.</h3>
+{% endif %}
+</div>
+{% endblock %}

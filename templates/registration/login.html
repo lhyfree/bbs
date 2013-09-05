@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}登录页{% endblock %}
+{% block content %}
+<div class="span7 ">
+ <div id="myCarousel" class="carousel slide">
+   <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+   </ol>
+    <!-- Carousel items -->
+   <div class="carousel-inner">
+    <div class="active item"><img src="/static/images/lunbo/1.jpg" alt="1"></div>
+    <div class="item"><img src="/static/images/lunbo/2.jpg" alt="2"></div>
+    <div class="item"><img src="/static/images/lunbo/3.jpg" alt="3"></div>
+    <div class="item"><img src="/static/images/lunbo/4.jpg" alt="4"></div>
+   </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+ </div>
+</div>
+
+<div class="span4 well pull-right"  class="" style="width:270px;height:367px;margin:0px;background-image:url('/static/images/lanse.jpg');">
+    <form  action="" method="post" >
+        {% csrf_token %}
+        <legend style="color: white;">人生苦短，我用Python</legend>
+       <div align="">
+            <p style="color: white;">用户名：</p>
+            <div align="center" class="input-prepend">
+                <span class="add-on" style="height:25px"><img src="/static/images/user.ico"
+                                                              style="width:20px;height:20px;"></span>
+                <input type="text" name="username" style="height:25px" class="span3" placeholder="username">
+            </div>
+           <p style="color: white;">密码：</p>
+            <div align="center" class="input-prepend">
+                <span class="add-on" style="height:25px"><img src="/static/images/lock.ico"
+                                                              style="width:20px;height:20px;"></span>
+                <input type="password" name="password" style="height:25px" class="span3" placeholder="password">
+            </div>
+           <p></p>
+          <button type="submit" style="width:250px"  class="btn  btn-primary">Login</button>
+          <input type="hidden" name="next" value="{{ next|escape }}" />
+      </div>
+    </form>
+    {% if error %}
+    <div class="alert alert-error " class="well" style="width:220px;height:20px;margin:30px auto;">
+        <p>Invalid username or password!</p>
+    </div>
+    {% endif %}
+    <div align="right"><a  href="/findpassword/">忘记密码？</a></div>
+</div>
+
+{% endblock %}

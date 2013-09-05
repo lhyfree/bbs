@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/docs.css" rel="stylesheet">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/static/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="/static/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="/static/kindeditor/lang/zh_CN.js"></script>
+
+    <script type=text/javascript src="/static/js/scrolltop.js"></script>
+    <link rel=stylesheet type=text/css href="/static/css/lrtk.css">
+
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    {% block head %}{% endblock %}
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+<div style="dsiplay: none" id=goTopBtn><img border=0 src="/static/images/lanren_top.jpg"></div>
+<script type=text/javascript>goTopEx();</script>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+    <a class="brand" href="/">BBS &nbsp&nbsp&nbsp&nbsp&nbsp</a>
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="">
+                        <a href="/about/">About</a>
+                    </li>
+                </ul>
+                <ul class="nav pull-right">
+                    {% if user.is_authenticated %}
+                        <li class="">
+                            <a><i class="icon-user icon-white"></i>{{ user.username }}</a>
+                        </li>
+                        <li class="">
+                            <a href="/edit/"><i class="icon-pencil icon-white"></i>发帖</a>
+                        </li>
+                         <li class="">
+                            <a href="/modify/"><i class="icon-wrench icon-white"></i>修改密码</a>
+                        </li>
+                        <li class="">
+                            <a href="/accounts/logout/"><i class="icon-off icon-white"></i>退出</a>
+                        </li>
+                    {% else %}
+                        <li class="">
+                            <a href="/accounts/login/"><i class="icon-user icon-white"></i>登录</a>
+                        </li>
+                        <li class="">
+                            <a href="/accounts/register/"><i class="icon-envelope icon-white"></i>注册</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container main">
+    <div class="row">
+        <div class="span12 ">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <div align="center" class="container">
+        <p>Copyright © 2013 LHY. All Rights Reserved.Life is short,you need python.</p>
+        <ul class="footer-links">
+            <li><a href="http://weibo.com/u/1078302584">微博</a></li>
+            <li><a href="/about/">关于</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

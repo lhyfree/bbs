@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}blog{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="span9 ">
+    <div align="" class="span9 " >
+      <legend><h3 style="color: #5CA9E2;" >{{ post.title }}</h3></legend>
+    </div>
+    <div class="span9 ">
+        {{ post.content|safe}}
+    </div>
+    <div  class="span9 ">
+        <p></p>
+        <div align="right">
+            <div class="bshare-custom">
+                <span class="muted">分享至&nbsp</span>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                <!--a title="分享到人人网" class="bshare-renren"></a-->
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <!--a title="分享到网易微博" class="bshare-neteasemb"></a-->
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count">0</span>
+                <span class="muted">┊{{ post.author }} 发布于 {{ post.date }}</span>
+                <span class="muted"></span>
+                {% if user.is_authenticated and user.username == post.author%}
+                    <span class="muted">┊</span>
+                    <button onclick="window.location.href='/{{ post.id }}/edit/{{ user.username }}/'" class="btn btn-mini btn-inverse" type="button">编辑</button>
+                    <button onclick="window.location.href='/{{ post.id }}/delete/{{ user.username }}/'" class="btn btn-mini btn-inverse" type="button">删除</button>
+                {% endif %}
+            </div>
+            <p></p>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=18873d97-b525-4ae6-9044-b92dedc53231&amp;pophcol=2&amp;lang=zh"></script>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+        </div>
+    </div>
+    <div class="span9" style="width:740px;height:2px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+
+    <div  class="span9 ">
+        <p></p>
+        {% if post.comment %}
+            <h6 style="color: #5CA9E2;" >共{{ post.comment|length  }}条回复</h6>
+        {% else %}
+            <h6 style="color: #5CA9E2;" >共0条回复</h6>
+        {% endif %}
+        <div class="dropdown">
+            <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                <legend><span class="label label-inverse">回复<i class="icon-arrow-down icon-white"></i></span></legend>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+               <div class="span6"  class="" style="width:400px;height:270px;">
+                <form  action="/comment/" method="post" >
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        <p>{{ user.username }}:</p>
+                        <input type="hidden" name="author" value="{{ user.username }}" />
+                    {% else %}
+                        <p>匿名:</p>
+                        <input type="hidden" name="author" value="anonymous" />
+                    {% endif %}
+                    <div><textarea name="content" style="width:360px;" rows="7"></textarea><div>
+                     <input type="hidden" name="post_id" value="{{ post.id }}" />
+	            	<div><button type="submit" class="btn btn-inverse">回复</button></div>
+                </form>
+               </div>
+            </ul>
+        </div>
+      </div>
+    <div  class="span9 ">
+        {% if post.comment %}
+            {% for comment in post.comment %}
+                <div><h5><small>{{ comment.author }}&nbsp 发表于 &nbsp{{ comment.date }}&nbsp</small></h5></div>
+                <div class="span9 ">
+                    {{ comment.content}}
+                </div>
+                <p>&nbsp</p>
+                <div class="span9" style="width:px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

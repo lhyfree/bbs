@@ -1,0 +1,11 @@
+.main{
+    min-height: 540px;
+    margin-top: 40px;
+}
+.register th{
+    text-align: right;
+    width: 90px;
+}
+.register th label{
+    line-height: 35px;
+}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}register{% endblock %}
+
+{% block content %}
+
+  <form action="" class="well form-horizontal"  method="post" style="width:650px;margin:0px;background-image:url('/static/images/lanse.jpg');">
+    {% csrf_token %}
+       <div class="control-group">
+          <label style="color: white;" class="control-label">用户名：</label>
+              <div class="controls">
+                <input id="inputUsername" name="username" placeholder="Username" type="text">
+              </div>
+       </div>
+       <div class="control-group">
+         <label style="color: white;" class="control-label">密码：</label>
+         <div class="controls">
+           <input id="inputPassword" name="password" placeholder="Password" type="password">
+         </div>
+       </div>
+       <div class="control-group">
+         <label style="color: white;" class="control-label">邮箱：</label>
+         <div class="controls">
+           <input id="inputEmail" name="email" placeholder="Email" type="text">
+         </div>
+       </div>
+      <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">注册</button>
+            <button type="reset" class="btn btn-danger">取消</button>
+            {% if error %}
+               <p></p>
+               <p class=" alert-error " style="width:220px;">Username has been registered !</p>
+                <p class=" alert-error " style="width:220px;">Input username,password,email!</p>
+            {% endif %}
+          </div>
+       </div>
+  </form>
+
+
+{% endblock %}

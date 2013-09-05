@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+{% block title %}about{% endblock %}
+{% block head %}
+    <script type='text/javascript' src='http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.0.min.js'></script>
+    <script type="text/javascript">
+	jQuery(document).ready(function(){
+		$("#action").click(function(){
+			$("#generate").slideToggle();
+		});
+		$(".card").css("display","block").animate({opacity:0},0);
+		$(".card").delay(800).animate({bottom:"+=20",opacity:1},500);
+	});
+    </script>
+    <style type="text/css">
+	html,body,h1,h2,h3,h4,h5,ul,li,p,input,textarea{
+		margin: 0;
+		padding: 0;
+	}
+	ul,li{
+		list-style: none;
+	}
+	body,a{
+		font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+		color: #333;
+		text-decoration: none;
+	}
+	.clearfix:after{
+		clear:both;
+		overflow:hidden;
+		content:"";
+		display:table;
+	}
+	.clearfix{
+	    zoom:1;
+	}
+	.box{
+		width: 950px;
+		margin: 0 auto;
+	}
+	.graypanel{
+		background: #f1f1f1;
+	}
+	#header{
+		height: 40px;
+		background: #f7f7f7;
+	}
+	#header ul{
+		float: right;
+		text-align: right;
+		margin: 15px 0 0;
+	}
+	#header ul li{
+		float: left;
+		margin: 0 0 0 25px;
+	}
+	#header ul li a{
+		display: inline-block;
+		color: #ccc;
+		padding: 0 2px;
+	}
+	#header ul li a:hover{
+		background: #ccc;
+		color: #fff;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	#logo{
+		float: left;
+		margin: 8px 0 0;
+	}
+	#introduction{
+		padding: 40px 0 0;
+	}
+	#introduction .screenshot{
+		float: left;
+		width: 480px;
+		position:relative;
+		margin-left: -15px;
+	}
+	.screenshot .card{
+		position:absolute;
+		bottom:115px;
+		left:115px;
+		display: none;
+
+	}
+	#introduction .summary{
+		float: right;
+		width: 455px;
+	}
+	#introduction h1{
+		margin: 20px 0 20px;
+	}
+	#introduction .summary p{
+		font-size: 14px;
+		line-height: 24px;
+		padding: 0 5px 5px 0;
+		color: #6c6b6b;
+	}
+	#action{
+		cursor: pointer;
+		margin: 25px 0 0;
+		display: inline-block;
+		width: 106px;
+		height: 42px;
+		line-height: 46px;
+		text-align: center;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		background-color: #f40;
+		-webkit-box-shadow: 0 3px #db3a00;
+		-moz-box-shadow: 0 3px #db3a00;
+		box-shadow: 0 3px #db3a00;
+		color: #fff;
+		font-size: 18px;
+		text-shadow: 0 -1px rgba(0,0,0,.2);
+	}
+	#action:hover{
+		background: #db3a00;
+	}
+	#action:active{
+		background: #aa2d00;
+	}
+	#createcode{
+		margin-top:-20px;
+		display: inline-block;
+		width: 76px;
+		height: 34px;
+		line-height:34px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		background-color: #00bb6e;
+		text-align:center;
+		font-size: 14px;
+		color: #fff;
+		text-shadow: 0 -1px rgba(0,0,0,.15);
+		cursor: pointer;
+	}
+	#createcode:hover{
+		background: #009a5b;
+	}
+	#createcode:active{
+		background: #00814c;
+	}
+	h2,h3,h4{
+		text-align: center;
+		line-height: 1;
+	}
+	h3{
+		margin: 5px 0 30px;
+	}
+	h4{
+		margin:5px 0 0;
+	}
+	#feature,#showcase,#generate{
+		padding: 50px 0;
+	}
+	#featurelist{
+		width:1020px;
+	}
+	#featurelist li{
+		float: left;
+		width: 190px;
+		text-align: center;
+		margin: 0 63px 0 0;
+	}
+	#featurelist li p{
+		text-align: left;
+		color: #8c9197;
+		line-height: 22px;
+	}
+	#generate{
+		border-top:#e5e5e5 solid 1px;
+		display: none;
+		position: relative;
+	}
+	.triangle{
+		position: absolute;
+		width: 12px;
+		height: 7px;
+		top: -1px;
+		left: 50%;
+		margin-left: -6px;
+		background:#f1f1f1 url(/static/images/triangle.png) center top no-repeat;
+	}
+	.configration{
+		float:left;
+		text-align:right;
+		width:450px;
+	}
+	.configration ul li{
+		margin:0 0 40px;
+	}
+	.configration label{
+		color:#888;
+	}
+	.radio{
+		margin:0 0 0 20px;
+		vertical-align:middle;
+		margin-top:-2px;
+		margin-bottom:1px;
+		cursor: pointer;
+	}
+	label:hover{
+		cursor: pointer;
+		color: #333;
+	}
+	label a{
+		color: #888;
+	}
+	label a:hover{
+		color: #333;
+		text-decoration: underline;
+	}
+	.textinput{
+		height:30px;
+		width:150px;
+		border:#d5d5d5 solid 1px;
+		text-align:right;
+		padding:0 6px;
+		color: #666;
+	}
+	.alert{
+		border: #EEADB7 solid 1px;
+		background: #f2dede;
+	}
+	#codepool{
+		border:#d5d5d5 solid 1px;
+		padding:10px;
+		width:430px;
+		height:155px;
+		color: #666;
+	}
+	h5{
+		color:#666;
+		font-size:14px;
+		font-weight:normal;
+		margin:0 0 5px;
+	}
+	.result{
+		float:right;
+		width:452px;
+	}
+	.tip{
+		color:#b3b3b3;
+	}
+	#footer{
+		text-align: center;
+		padding: 20px 0;
+		color: #bcbcbc;
+		font-size: 14px;
+	}
+</style>
+{% endblock %}
+{% block content %}
+	<div id="introduction" class="">
+		<div class="box clearfix">
+			<div style="border:1px solid #f1f1f1 " class="screenshot"><img src="/static/images/about.jpg"></div>
+            <!--img class="card" src="/static/images/"-->
+			<div class="summary">
+				<div align="left" class="lead">The Zen of Python</div>
+				<div class="excerpt">
+                    <p>Beautiful is better than ugly.                                         </p>
+                    <p>Explicit is better than implicit.                                      </p>
+                    <p>Simple is better than complex.                                         </p>
+                    <p>Complex is better than complicated.                                    </p>
+                    <p>......                                    </p>
+				</div>
+				<a id="action">more then</a>
+                <div align="right"><a href="/about/me"><span class="label label-inverse">About me</span></a></div>
+			</div>
+		</div>
+	</div>
+	<div id="generate" class=" clearfix">
+		<div class="span6 ">
+            <div align="left" class="lead"><p class="text-warning">The Zen of Python</p></div>
+            <p class="text-warning">Beautiful is better than ugly.                                         </p>
+            <p class="text-warning">Explicit is better than implicit.                                      </p>
+            <p class="text-warning">Simple is better than complex.                                         </p>
+            <p class="text-warning">Complex is better than complicated.                                    </p>
+            <p class="text-warning">Flat is better than nested.                                            </p>
+            <p class="text-warning">Sparse is better than dense.                                           </p>
+            <p class="text-warning">Readability counts.                                                    </p>
+            <p class="text-warning">Special cases aren't special enough to break the rules.                </p>
+            <p class="text-warning">Although practicality beats purity.                                    </p>
+            <p class="text-warning">Errors should never pass silently.                                     </p>
+            <p class="text-warning">Unless explicitly silenced.                                            </p>
+            <p class="text-warning">In the face of ambiguity, refuse the temptation to guess.              </p>
+            <p class="text-warning">There should be one-- and preferably only one --obvious way to do it.  </p>
+            <p class="text-warning">Although that way may not be obvious at first unless you're Dutch.     </p>
+            <p class="text-warning">Now is better than never.                                              </p>
+            <p class="text-warning">Although never is often better than *right* now.                       </p>
+            <p class="text-warning">If the implementation is hard to explain, it's a bad idea.             </p>
+            <p class="text-warning">If the implementation is easy to explain, it may be a good idea.       </p>
+            <p class="text-warning">Namespaces are one honking great idea -- let's do more of those!       </p>
+		</div>
+        <div class="span4 pull-right">
+            <div align="left" class="lead"><p class="text-error">python之禅</p></div>
+            <p  class="text-error">美胜丑,</p>
+            <p  class="text-error">显胜暗,</p>
+            <p  class="text-error">简单胜冗繁.</p>
+            <p  class="text-error">繁胜难,</p>
+            <p  class="text-error">直胜弯,</p>
+            <p  class="text-error">稀疏胜稠密.</p>
+            <p  class="text-error">则可读性存焉,</p>
+            <p  class="text-error">规则重于特例,</p>
+            <p  class="text-error">纵然然实用重于纯粹.</p>
+            <p  class="text-error">错误不可不报,</p>
+            <p  class="text-error">除非有意为之.</p>
+            <p  class="text-error">模棱两可莫要猜,</p>
+            <p  class="text-error">车到山前必有路,路常有,且常唯一.</p>
+            <p  class="text-error">云深不知处，只缘不是Python之父.</p>
+            <p  class="text-error">但不假思索就动手还不如不做,</p>
+            <p  class="text-error">但仓促动手不如不做.</p>
+            <p  class="text-error">说不清，定是坏主意;</p>
+            <p  class="text-error">说得清，或许还不错.</p>
+            <p  class="text-error">名可名，请长名.</p>
+        </div>
+	</div>
+	<div id="feature" class="box">
+		<p class="lead"><h2 class="muted">Python有何特性</h2></p>
+		<p class="lead"><h3 class="muted">这些理由足以让你用一下</h3></p>
+		<ul id="featurelist" class="clearfix">
+			<li>
+				<legend><h5 class="text-warning">实现简单且强大</h5></legend>
+                <p>Python是一种支持面向对象的解释性高级语言，Simple yet Powerful是人们对它的一致评价。
+                    Python 的Web框架，简单、高效，本网站采用的是django1.5</p>
+			</li>
+			<li>
+                <legend><h5 class="text-warning">代码简洁且优美</h5></legend>
+                <p>Python语法灵活，支持Dynamic Typing，变量不用进行声明，代码密度是C++的5到10倍，是Java的5倍左右。
+                Python采用严格的缩 进方式来管理代码，提高了可读性，极大的降低了代码维护的代价。</p>
+			</li>
+			<li>
+				<legend><h5 class="text-warning">无忧内存且高效</h5></legend>
+                <p>Python自身包含Gargage Collection和内存管理机制，用户无需费心这些细节问题。Python支持Interactive Programming。
+                Python的运行时效率很高，却足以支持复杂的高层数据结构。</p>
+			</li>
+			<li>
+                <legend><h5 class="text-warning">模块丰富且扩展</h5></legend>
+                <p>Python具有丰富和强大的类库。它常被昵称为胶水语言，它能够很轻松的把用其他语言制作的各种模块轻松地联结在一起。
+                    且为开发人员提供了丰富的模块，可快速开发出功能强大的程序。</p>
+			</li>
+		</ul>
+	</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}modify{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<div class="span8 ">
+<form action="" class="well form-horizontal"  method="post" style="width:650px;margin:0px;background-image:url('/static/images/lanse.jpg');">
+    {% csrf_token %}
+       <div class="control-group">
+         <label style="color: white;" class="control-label">新密码：</label>
+         <div class="controls">
+           <input id="inputPassword" name="password" placeholder="Password" type="password">
+           <input type="hidden" name="username" value="{{ user.username }}" />
+         </div>
+       </div>
+      <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">确定</button>
+            <button type="reset" class="btn btn-danger">取消</button>
+            {% if flag %}
+               <p></p>
+               <p class=" alert-error " style="width:220px;">密码修改成功！</p>
+            {% endif %}
+          </div>
+       </div>
+  </form>
+
+</div>
+{% endblock %}
